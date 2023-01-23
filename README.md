@@ -45,9 +45,10 @@ This field should contain webapp Gestion Materiel URL(s) that will use this clie
 **5. Creating a User call "usertest1"**
 ![alt text](https://fouomene.com/images/userkeycloak.jpg)
 ![alt text](https://fouomene.com/images/userkeycloak2.jpg)
+![alt text](https://fouomene.com/images/userkeycloak3.jpg)
 
 **6. Set password "usertest1"**
-![alt text](https://fouomene.com/images/userkeycloak3.jpg)
+![alt text](https://fouomene.com/images/userkeycloak4.jpg)
 
 **7. Assign the Role "admin" to our User "usertest1"**
 ![alt text](https://fouomene.com/images/assignrolekeycloak1.jpg)
