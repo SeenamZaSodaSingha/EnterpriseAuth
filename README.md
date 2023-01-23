@@ -1,6 +1,6 @@
-# POC Keycloak and Spring Security
+# POC Keycloak and Spring Security Oauth2
 
-POC Keycloak and Spring Security to Secure WebApp Gestion Materiel 
+POC Keycloak and Spring Security Oauth2 to secure WebApp Gestion Materiel 
 
 # Keycloak Server
 
