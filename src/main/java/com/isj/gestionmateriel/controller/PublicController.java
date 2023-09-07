@@ -1,18 +1,28 @@
 package com.isj.gestionmateriel.controller;
+import com.isj.gestionmateriel.config.KeycloakLogoutHandler;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+import org.keycloak.adapters.springsecurity.client.KeycloakRestTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 // import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 
 @Controller
 public class PublicController {
 
     @GetMapping("/")
-    public String publicLanding() {
+    public String publicLanding(@AuthenticationPrincipal Jwt jwt) {
         System.out.println("Hello public is called");
         return "public/public_portal";
     }
@@ -20,13 +30,14 @@ public class PublicController {
     @GetMapping("/login")
     public String login() {
         System.out.println("Login is called");
-        return "status/500";
+        return "/";
     }
 
-    @GetMapping("/{path}")
-    public String publicFunc(@PathVariable("path") String path) {
-        System.out.println("public " + path + " is called");
-        return "public/public_" + path;
+
+    @GetMapping("/func_1")
+    public String publicFunc(/*@PathVariable("path") String path*/@AuthenticationPrincipal Jwt jwt) {
+        System.out.println("public func 1 is called");
+        return "public/public_func_1";
     }
 
     @GetMapping("/200")

@@ -26,7 +26,6 @@ public class KeycloakLoginSuccessHandler extends SavedRequestAwareAuthentication
         OidcUser oidcUser = (OidcUser) authentication.getPrincipal();
 
         logger.info("********************* Welcome! " + oidcUser.getName() + " Just landed!");
-        // logger.info("*********************" + oidcUser.getName() + " Role is: " + oidcUser.getAttribute("role"));
 
         request.getSession().setAttribute("username", oidcUser.getName());
 
