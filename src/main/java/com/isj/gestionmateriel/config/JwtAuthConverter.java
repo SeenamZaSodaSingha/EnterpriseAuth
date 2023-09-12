@@ -12,7 +12,6 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtAut
 import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
@@ -67,6 +66,7 @@ public class JwtAuthConverter implements Converter<Jwt, AbstractAuthenticationTo
         resource = (Map<String, Object>) resourceAccess.get(resourceId);
 
         resourceRoles = (Collection<String>) resource.get("roles");
+        System.out.println("\n\nresourceRoles: " + resource.get("roles") + "\n\n");
         return resourceRoles
                 .stream()
                 .map(role -> new SimpleGrantedAuthority("ROLE_" + role))
