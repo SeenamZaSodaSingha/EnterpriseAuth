@@ -9,5 +9,4 @@ public class GestionMaterielApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(GestionMaterielApplication.class, args);
 	}
-
 }

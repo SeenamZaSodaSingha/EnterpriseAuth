@@ -21,7 +21,7 @@ public class KeycloakLoginSuccessHandler extends SavedRequestAwareAuthentication
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                         Authentication authentication) throws IOException, ServletException {
-        
+
 
         OidcUser oidcUser = (OidcUser) authentication.getPrincipal();
 

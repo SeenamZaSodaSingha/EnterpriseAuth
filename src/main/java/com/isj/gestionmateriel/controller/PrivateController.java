@@ -17,7 +17,7 @@ public class PrivateController {
     public String userLanding(){
         System.out.println("Hello user is called");
         // System.out.println("Hello, "+ jwt.getClaimAsString("preferred_username") + "!");
-        return "user/user_portal";
+        return "This is User Portal";
     }
 
     @GetMapping("/user/func_1")
@@ -25,7 +25,7 @@ public class PrivateController {
 	public String userRedirect(/*@PathVariable("path") String path*/) {
         System.out.println("User cat is called");
 		// System.out.println("Hello, "+ jwt.getClaimAsString("preferred_username") + "!");
-        return "user/user_func_1";
+        return "This is User Func";
 	}
 
     @GetMapping("/admin")
@@ -33,7 +33,7 @@ public class PrivateController {
     public String adminLanding(){
         System.out.println("Hello admin is called");
         // System.out.println("Hello, "+ jwt.getClaimAsString("preferred_username") + "!");
-        return "admin/admin_portal";
+        return "This is Admin Portal";
     }
 
     @GetMapping("/admin/func_1")
@@ -41,6 +41,6 @@ public class PrivateController {
     public String adminRedirect(/*@PathVariable("path") String path*/ ){
         System.out.println("admin cat is called");
         // System.out.println("Hello, "+ jwt.getClaimAsString("preferred_username") + "!");
-        return "admin/admin_func_1";
+        return "This is Admin Func";
     }
 }
