@@ -2,8 +2,10 @@ package com.isj.gestionmateriel.controller;
 // import com.isj.gestionmateriel.config.KeycloakLogoutHandler;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -22,18 +24,21 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 
 import static org.springframework.http.HttpMethod.GET;
+import org.springframework.http.HttpStatus;
 
 
-@Controller
+@RestController
+@CrossOrigin(origins = "*")
 public class PublicController {
 
     private final RestTemplate restTemplate = new RestTemplateBuilder().build();
 
 
     @GetMapping("/")
-    public ResponseEntity<Void> publicLanding() {
+    @ResponseStatus(HttpStatus.OK)
+    public void publicLanding() {
         System.out.println("Hello public is called");
-        return ResponseEntity.ok().build();
+        // return "Hello public is called";
     }
 
     // @GetMapping("/login")
@@ -44,9 +49,10 @@ public class PublicController {
 
 
     @GetMapping("/func")
-    public ResponseEntity<Void>  publicFunc() {
+    @ResponseStatus(HttpStatus.OK)
+    public void  publicFunc() {
         System.out.println("public func 1 is called");
-        return ResponseEntity.ok().build();
+        // return "Public func is called";
     }
 
     // @GetMapping("/200")

@@ -1,16 +1,24 @@
 package com.isj.gestionmateriel.config;
 
+import org.keycloak.adapters.springsecurity.authentication.KeycloakAuthenticationProvider;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.web.servlet.DispatcherServletAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.authority.mapping.SimpleAuthorityMapper;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.session.NullAuthenticatedSessionStrategy;
 import org.springframework.security.web.authentication.session.RegisterSessionAuthenticationStrategy;
 import org.springframework.security.web.authentication.session.SessionAuthenticationStrategy;
+import org.springframework.web.servlet.DispatcherServlet;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 import jakarta.servlet.Filter;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +26,7 @@ import lombok.RequiredArgsConstructor;
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
-public class SecurityConfiguration {
+public class SecurityConfiguration  {
     private final KeycloakLogoutHandler keycloakLogoutHandler;
     private final KeycloakLoginSuccessHandler keycloakLoginSuccessHandler;
 
@@ -36,16 +44,26 @@ public class SecurityConfiguration {
         return new RegisterSessionAuthenticationStrategy(buildSessionRegistry());
     }
 
+
     @Bean
     protected SessionRegistry buildSessionRegistry() {
         return new SessionRegistryImpl();
     }
 
+    // @Bean(name = DispatcherServletAutoConfiguration.DEFAULT_DISPATCHER_SERVLET_BEAN_NAME)
+    // public DispatcherServlet dispatcherServlet() {
+    //     DispatcherServlet dispatcherServlet = new DispatcherServlet();
+    //     dispatcherServlet.setDispatchOptionsRequest(true);
+    //     return dispatcherServlet;
+    // }
+
+    
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http.csrf(csrf -> csrf.disable());
-        // http.cors(cors -> cors.disable());
+        http.cors(cors -> cors.disable());
 
         http.authorizeHttpRequests(authorize -> authorize
 
@@ -56,6 +74,8 @@ public class SecurityConfiguration {
                 .requestMatchers("/*").permitAll()
                 .anyRequest()
                 .authenticated())
+                // .csrf(csrf -> csrf.disable())
+                // .cors(cors -> cors.disable())
                 .oauth2ResourceServer(oauth2 -> {
                     oauth2.jwt(jwt -> jwt
                             .jwtAuthenticationConverter(jwtAuthConverter));
