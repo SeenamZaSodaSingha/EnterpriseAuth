@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequestMapping("/api/v1")
 @CrossOrigin(origins = "*")
-@Controller
+@RestController
 public class PrivateController {
     
     @RequestMapping(method = RequestMethod.OPTIONS)
