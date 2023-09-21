@@ -19,11 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class PrivateController {
     
-    @RequestMapping(method = RequestMethod.OPTIONS)
-    @ResponseStatus(HttpStatus.OK)
-    public void handle() {
-        // This method handles OPTIONS requests with a 200 OK status code
-    }
+    // @RequestMapping(method = RequestMethod.OPTIONS)
+    // @ResponseStatus(HttpStatus.OK)
+    // public void handle() {
+    //     // This method handles OPTIONS requests with a 200 OK status code
+    // }
 
     @GetMapping("/user")
     @ResponseStatus(HttpStatus.OK)
