@@ -1,63 +1,48 @@
 package com.isj.gestionmateriel.controller;
 
 
+import java.security.Principal;
+
 import org.springframework.http.HttpStatus;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.oauth2.jwt.Jwt;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-@RequestMapping("/api/v1")
+// @RequestMapping("/api/v1")
 @CrossOrigin(origins = "*")
 @RestController
 public class PrivateController {
-    
-    // @RequestMapping(method = RequestMethod.OPTIONS)
-    // @ResponseStatus(HttpStatus.OK)
-    // public void handle() {
-    //     // This method handles OPTIONS requests with a 200 OK status code
-    // }
+    private int userMeunCnt = 0, userFuncCnt = 0, adminMeunCnt = 0, adminFuncCnt = 0;
 
     @GetMapping("/user")
     @ResponseStatus(HttpStatus.OK)
-    // @CrossOrigin
-    public void userLanding(){
+    public ResponseEntity<Integer> userLanding(Principal principal){
         System.out.println("Hello user is called");
-        // System.out.println("Hello, "+ jwt.getClaimAsvoid("preferred_username") + "!");
-        // return "This is User Portal";
+        return ResponseEntity.ok(++userMeunCnt);
     }
 
     @GetMapping("/user/func")
 	@ResponseStatus(HttpStatus.OK)
-    // @CrossOrigin
-	public void userRedirect(/*@PathVariable("path") void path*/) {
+	public int userRedirect() {
         System.out.println("User cat is called");
-		// System.out.println("Hello, "+ jwt.getClaimAsvoid("preferred_username") + "!");
-        // return "This is User Func";
+        return ++userFuncCnt;
 	}
 
     @GetMapping("/admin")
     @ResponseStatus(HttpStatus.OK)
     // @CrossOrigin
-    public void adminLanding(){
+    public int adminLanding(){
         System.out.println("Hello admin is called");
-        // System.out.println("Hello, "+ jwt.getClaimAsvoid("preferred_username") + "!");
-        // return "This is Admin Portal";
+        return ++adminMeunCnt;
     }
 
     @GetMapping("/admin/func")
     @ResponseStatus(HttpStatus.OK)
-    // @CrossOrigin
-    public void adminRedirect(/*@PathVariable("path") void path*/ ){
+    public int adminRedirect(){
         System.out.println("admin cat is called");
-        // System.out.println("Hello, "+ jwt.getClaimAsvoid("preferred_username") + "!");
-        // return "This is Admin Func";
+        return ++adminFuncCnt;
     }
 }
