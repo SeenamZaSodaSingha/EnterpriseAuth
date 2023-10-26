@@ -12,6 +12,13 @@ import org.springframework.http.HttpStatus;
 public class PublicController {
     private int meunCnt = 0, funcCnt = 0;
 
+    @GetMapping("/authorized")
+    @ResponseStatus(HttpStatus.OK)
+    public String isAuthorized() {
+        System.out.println("Auth check is called");
+        return "";
+    }
+
     @GetMapping("/")
     @ResponseStatus(HttpStatus.OK)
     public int publicLanding() {
