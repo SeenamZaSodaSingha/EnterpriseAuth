@@ -59,6 +59,7 @@ public class SecurityConfiguration  {
                 .requestMatchers("/api/v1/user/**").hasAnyRole("Client-Admin", "Client-User")
                 .requestMatchers("/api/v1/admin").hasRole("Client-Admin")
                 .requestMatchers("/api/v1/admin/**").hasRole("Client-Admin")
+                .requestMatchers("/authorized").permitAll()
                 .requestMatchers("/*").hasAnyRole("Client-Admin", "Client-User"))
                 .oauth2ResourceServer(oauth2 -> {
                     oauth2.jwt(jwt -> jwt
